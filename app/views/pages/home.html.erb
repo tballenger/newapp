@@ -1,3 +1,15 @@
+<% if user_signed_in? %>
+<h1>Welcome Member!</h1>
+
+<% else %>
+
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+<p>Sign up!</p>
+<p>
+	<%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-large" %>
+</p>
+
 <%= link_to 'taylorballenger.com', 'http://www.taylorballenger.com' %> 
+
+<% end %>
