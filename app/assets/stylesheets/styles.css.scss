@@ -1,3 +1,20 @@
-@import 'bootstrap';
+$navbarBackgroundHighlight: white;
+$navbarBackground: white;
+$navbarHeight: 50px;
 
+@import 'bootstrap';
 @import 'bootstrap-responsive';
+
+
+
+body {
+	padding-top: 80px;
+}
+
+.footer {
+	margin-top: 100px;
+	color: $grayLight;
+	a {
+		color: $gray;
+	}
+}

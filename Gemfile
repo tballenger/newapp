@@ -2,9 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+gem 'jquery-rails'
 
 
 group :development, :test do
@@ -15,7 +13,7 @@ group :production do
 	gem 'pg'
 end
 
-gem 'bootstrap-sass', '~> 2.2.2.0'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,9 +24,10 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'bootstrap-sass', '~> 2.2.2.0'
 end
 
-gem 'jquery-rails'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
