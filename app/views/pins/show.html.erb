@@ -6,8 +6,14 @@
 		  <b>Description:</b>
 		  <%= @pin.description %>
 		</p>
-		<%= link_to 'Edit', edit_pin_path(@pin) %> |
-		<%= link_to 'Back', pins_path %>
+		<p>
+			Your name:
+		  <%= @pin.user.name %>
+		</p>
+		<% if current_user == @pin.user %>
+			<%= link_to 'Edit', edit_pin_path(@pin) %> |
+			<%= link_to 'Back', pins_path %>
+		<% end %>
 		</div>
 	</div>
 

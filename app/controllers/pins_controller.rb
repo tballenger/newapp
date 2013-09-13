@@ -1,10 +1,14 @@
 class PinsController < ApplicationController
+  #add filter so people cant get here w/o being logged in.
+  before_filter :authenticate_user!, except: [:index]
+
+
   # GET /pins
   # GET /pins.json
   def index
-    @pins = Pin.all
+    @pins = Pin.all #creates variable and sets equal to Pin.all; run this in console. @ means it global variable.
 
-    respond_to do |format|
+    respond_to do |format| #this allows us to access in JSON format; creating API
       format.html # index.html.erb
       format.json { render json: @pins }
     end
@@ -13,7 +17,7 @@ class PinsController < ApplicationController
   # GET /pins/1
   # GET /pins/1.json
   def show
-    @pin = Pin.find(params[:id])
+    @pin = Pin.find(params[:id]) #singluar. runs a method .find passing ID in... try in console!
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +28,7 @@ class PinsController < ApplicationController
   # GET /pins/new
   # GET /pins/new.json
   def new
-    @pin = Pin.new
+    @pin = current_user.pins.new #creates current pin from within pins of current user
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,19 +38,19 @@ class PinsController < ApplicationController
 
   # GET /pins/1/edit
   def edit
-    @pin = Pin.find(params[:id])
+    @pin = current_user.pins.find(params[:id])
   end
 
   # POST /pins
   # POST /pins.json
   def create
-    @pin = Pin.new(params[:pin])
+    @pin = current_user.pins.new(params[:pin])
 
     respond_to do |format|
-      if @pin.save
+      if @pin.save #if it works 
         format.html { redirect_to @pin, notice: 'Pin was successfully created.' }
         format.json { render json: @pin, status: :created, location: @pin }
-      else
+      else #if it doesnt work
         format.html { render action: "new" }
         format.json { render json: @pin.errors, status: :unprocessable_entity }
       end
@@ -56,7 +60,7 @@ class PinsController < ApplicationController
   # PUT /pins/1
   # PUT /pins/1.json
   def update
-    @pin = Pin.find(params[:id])
+    @pin = current_user.pins.find(params[:id])
 
     respond_to do |format|
       if @pin.update_attributes(params[:pin])
@@ -71,8 +75,8 @@ class PinsController < ApplicationController
 
   # DELETE /pins/1
   # DELETE /pins/1.json
-  def destroy
-    @pin = Pin.find(params[:id])
+  def destroy #almost like show
+    @pin = current_user.pins.find(params[:id])
     @pin.destroy
 
     respond_to do |format|
